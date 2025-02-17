@@ -19,7 +19,6 @@ config :lastbite, Lastbite.Repo,
 # Binding to loopback ipv4 address prevents access from other machines.
 config :lastbite, LastbiteWeb.Endpoint,
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines. 
-  url: [host: "100.88.105.54", port: 4000],
   http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
