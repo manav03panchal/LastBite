@@ -1,0 +1,103 @@
+<div class="mx-auto max-w-4xl px-4 py-16">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+      Reduce Food Waste <span class="block text-green-600">Share with Your Community</span>
+    </h1>
+    <p class="mt-6 text-lg leading-8 text-gray-600">
+      LastBite connects restaurants and food businesses with people in need,
+      ensuring surplus food finds a home instead of a landfill.
+    </p>
+    <div class="mt-10 flex items-center justify-center gap-x-6">
+      <%= if @current_user do %>
+        <a
+          href="/share"
+          class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+        >
+          Share Food
+        </a>
+        <a href="/feed" class="text-sm font-semibold leading-6 text-gray-900">
+          View Available Food <span aria-hidden="true">→</span>
+        </a>
+      <% else %>
+        <a
+          href="/users/register"
+          class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+        >
+          Get Started
+        </a>
+        <a href="/users/log_in" class="text-sm font-semibold leading-6 text-gray-900">
+          Log in <span aria-hidden="true">→</span>
+        </a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+    <div class="text-center">
+      <div class="flex justify-center">
+        <div class="rounded-lg bg-green-100 p-3">
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+      </div>
+      <h2 class="mt-4 text-lg font-semibold">Real-time Updates</h2>
+      <p class="mt-2 text-gray-600">See available food in real-time from local businesses</p>
+    </div>
+
+    <div class="text-center">
+      <div class="flex justify-center">
+        <div class="rounded-lg bg-green-100 p-3">
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+            />
+          </svg>
+        </div>
+      </div>
+      <h2 class="mt-4 text-lg font-semibold">Local Community</h2>
+      <p class="mt-2 text-gray-600">Connect with nearby restaurants and organizations</p>
+    </div>
+
+    <div class="text-center">
+      <div class="flex justify-center">
+        <div class="rounded-lg bg-green-100 p-3">
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+      </div>
+      <h2 class="mt-4 text-lg font-semibold">Simple Process</h2>
+      <p class="mt-2 text-gray-600">Easy to share or claim food with just a few clicks</p>
+    </div>
+  </div>
+</div>

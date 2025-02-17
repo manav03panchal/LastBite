@@ -1,0 +1,89 @@
+<div class="min-h-screen bg-gray-50">
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <.form for={@form} phx-submit="save" class="bg-white p-4 rounded-lg shadow-sm">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <.input field={@form[:name]} label="Food Item Name" />
+          </div>
+          <div>
+            <.input field={@form[:business]} label="Business Name" />
+          </div>
+          <div>
+            <.input field={@form[:quantity]} label="Quantity" />
+          </div>
+          <div>
+            <.input field={@form[:location]} label="Location" />
+          </div>
+          <div class="col-span-2">
+            <.live_file_input upload={@uploads.food_image} class="mt-2" />
+            <%= for entry <- @uploads.food_image.entries do %>
+              <div class="mt-2">
+                <.live_img_preview entry={entry} class="w-32 h-32 object-cover rounded" />
+                <%= if entry.progress > 0 do %>
+                  <div class="w-full bg-gray-200 rounded">
+                    <div class="bg-green-600 rounded h-2" style={"width: #{entry.progress}%"}>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="mt-4">
+          <.button class="w-full">Share Food</.button>
+        </div>
+      </.form>
+    </div>
+
+    <div class="space-y-4">
+      <%= for item <- @food_items do %>
+        <div class="bg-white rounded-lg shadow-sm p-4">
+          <div class="flex gap-4">
+            <%= if item.image_url do %>
+              <div class="space-y-2">
+                <img
+                  src={item.image_url}
+                  class="w-32 h-32 object-cover rounded-lg border border-red-500"
+                />
+                <%!-- <div class="text-xs text-red-500"> --%>
+                <%!--   <p>Image URL in DB: {item.image_url}</p> --%>
+                <%!--   <p> --%>
+                <%!--     Full path: {Path.join( --%>
+                <%!--       Application.app_dir(:lastbite, "priv/static"), --%>
+                <%!--       item.image_url --%>
+                <%!--     )} --%>
+                <%!--   </p> --%>
+                <%!-- </div> --%>
+              </div>
+            <% else %>
+              <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                <span class="text-gray-400">Debug: No image URL saved</span>
+                <p>Item inspect: {inspect(item)}</p>
+              </div>
+            <% end %>
+            <div class="flex-1 flex justify-between">
+              <div>
+                <h3 class="font-semibold text-lg">{item.name}</h3>
+                <p class="text-sm text-gray-500">{item.business}</p>
+                <div class="mt-2 flex gap-4 text-sm text-gray-500">
+                  <div>📍 {item.location}</div>
+                  <div>📦 {item.quantity}</div>
+                  <div>⏰ {time_remaining(item.expires_at)}</div>
+                </div>
+              </div>
+              <button
+                phx-click="claim"
+                phx-value-id={item.id}
+                class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm h-10"
+              >
+                Claim
+              </button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </main>
+</div>
+
