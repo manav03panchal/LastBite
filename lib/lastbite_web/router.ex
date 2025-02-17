@@ -24,6 +24,14 @@ defmodule LastbiteWeb.Router do
     live "/", HomeLive
     # Public feed for viewing
     live "/feed", FoodShareLive
+
+    # Combine both current_user live_sessions here
+    live_session :current_user,
+      on_mount: [{LastbiteWeb.UserAuth, :mount_current_user}] do
+      live "/community", CommunityLive
+      live "/users/confirm/:token", UserConfirmationLive, :edit
+      live "/users/confirm", UserConfirmationInstructionsLive, :new
+    end
   end
 
   # Protected routes
@@ -60,14 +68,7 @@ defmodule LastbiteWeb.Router do
 
   scope "/", LastbiteWeb do
     pipe_through [:browser]
-
     delete "/users/log_out", UserSessionController, :delete
-
-    live_session :current_user,
-      on_mount: [{LastbiteWeb.UserAuth, :mount_current_user}] do
-      live "/users/confirm/:token", UserConfirmationLive, :edit
-      live "/users/confirm", UserConfirmationInstructionsLive, :new
-    end
   end
 
   # Development routes

@@ -15,8 +15,15 @@ defmodule Lastbite.Sharing.FoodItem do
 
   def changeset(food_item, attrs) do
     food_item
-    # Added image_url here
-    |> cast(attrs, [:name, :business, :quantity, :location, :expires_at, :claimed, :image_url])
+    |> cast(attrs, [
+      :name,
+      :business,
+      :quantity,
+      :location,
+      :expires_at,
+      :claimed,
+      :image_url
+    ])
     |> validate_required([:name, :business, :quantity, :location, :expires_at])
   end
 end

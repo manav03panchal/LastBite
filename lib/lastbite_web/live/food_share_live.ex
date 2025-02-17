@@ -24,7 +24,8 @@ defmodule LastbiteWeb.FoodShareLive do
       |> allow_upload(:food_image,
         accept: ~w(.jpg .jpeg .png),
         max_entries: 1,
-        max_file_size: 5_000_000
+        max_file_size: 5_000_000,
+        auto_upload: true
       )
 
     {:ok, socket}
@@ -132,5 +133,8 @@ defmodule LastbiteWeb.FoodShareLive do
     diff = DateTime.diff(expires_at, now, :minute)
     "#{diff} minutes left"
   end
-end
 
+  def handle_event("cancel-upload", %{"ref" => ref}, socket) do
+    {:noreply, cancel_upload(socket, :food_image, ref)}
+  end
+end

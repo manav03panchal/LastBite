@@ -12,43 +12,53 @@
     </script>
   </head>
   <body class="h-full bg-gray-50">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <a href="/" class="text-2xl font-bold text-green-600">LastBite</a>
-        </div>
-        <div class="flex items-center gap-4">
-          <%= if @current_user do %>
-            <a href="/share" class="text-gray-600 hover:text-gray-900">Share Food</a>
-            <.link
-              href={~p"/users/log_out"}
-              method="delete"
-              class="text-gray-600 hover:text-gray-900"
-            >
-              Log out
-            </.link>
-          <% else %>
-            <a href="/users/register" class="text-gray-600 hover:text-gray-900">Register</a>
-            <a
-              href="/users/log_in"
-              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              Log in
-            </a>
-          <% end %>
-          <span class="text-gray-300">|</span>
-          <a
-            href="https://github.com/manav03panchal/lastbite"
-            class="text-gray-600 hover:text-gray-900"
-          >
-            GitHub
-          </a>
-          <%!-- <a href="/share" class="text-gray-600 hover:text-gray-900 flex items-center gap-1"> --%>
-          <%!--   Get Started <span aria-hidden="true">→</span> --%>
-          <%!-- </a> --%>
+    <div class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-8">
+            <a href="/" class="text-2xl font-bold text-green-600">LastBite</a>
+            <%= if @current_user do %>
+              <div class="flex items-center gap-4">
+                <a href="/share" class="text-gray-600 hover:text-gray-900">Share Food</a>
+                <a href="/community" class="text-gray-600 hover:text-gray-900">Community</a>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <%= if @current_user do %>
+              <span class="text-sm text-gray-600">
+                👤 {@current_user.email}
+              </span>
+              <.link
+                href={~p"/users/settings"}
+                class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+              >
+                Settings
+              </.link>
+              <.link
+                href={~p"/users/log_out"}
+                method="delete"
+                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              >
+                Log out
+              </.link>
+            <% else %>
+              <a href="/users/register" class="text-gray-600 hover:text-gray-900">Register</a>
+              <a
+                href="/users/log_in"
+                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              >
+                Log in
+              </a>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-    {@inner_content}
+
+    <div class="pt-20">
+      {@inner_content}
+    </div>
   </body>
 </html>
